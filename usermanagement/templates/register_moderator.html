@@ -1,0 +1,8 @@
+{% block content %}
+  <h2>Create Moderator</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ moderator_form.as_p }}
+    <button type="submit">Create Moderator</button>
+  </form>
+{% endblock %}

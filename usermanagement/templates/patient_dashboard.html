@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to Your Dashboard</h1>
+
+    <h2>Your Approved Appointments</h2>
+    <ul>
+        {% for appointment in approved_appointments %}
+            <li>{{ appointment.appointment_datetime }} with {{ appointment.doctor }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

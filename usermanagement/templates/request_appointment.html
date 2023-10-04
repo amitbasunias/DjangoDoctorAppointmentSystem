@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Appointment</title>
+</head>
+<body>
+    <h2>Request Appointment</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="doctor">Select Doctor:</label>
+        <select name="doctor_id">
+            {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="appointment_datetime">Appointment Date and Time:</label>
+        <input type="datetime-local" name="appointment_datetime" required><br>
+
+        <button type="submit">Request Appointment</button>
+    </form>
+</body>
+</html>

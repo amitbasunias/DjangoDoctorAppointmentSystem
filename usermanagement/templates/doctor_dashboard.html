@@ -1,0 +1,49 @@
+
+{% block content %}
+  <h2>Welcome to Doctor's Dashboard</h2>
+
+  <!-- Appointments -->
+  <h3>Appointments</h3>
+  <ul>
+    {% for appointment in appointments %}
+      <li>{{ appointment.patient }} - {{ appointment.appointment_datetime }} (Status: {{ appointment.status }})</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Create Prescription -->
+  <h3>Create Prescription</h3>
+  <form method="post" action="{% url 'create_prescription' %}">
+    {% csrf_token %}
+    {{ prescription_form.as_p }}
+    <button type="submit">Create Prescription</button>
+  </form>
+
+  <!-- Set Availability -->
+  <h3>Set Availability</h3>
+  <form method="post" action="{% url 'set_availability' %}">
+    {% csrf_token %}
+    {{ availability_form.as_p }}
+    <button type="submit">Set Availability</button>
+  </form>
+
+
+<!-- Set Custom Availability -->
+<h3>Set Custom Availability</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ custom_availability_form.as_p }}
+    <button type="submit" name="set_custom_availability">Set Custom Availability</button>
+</form>
+
+  <!-- Set Vacation Mode -->
+  <h3>Set Vacation Mode</h3>
+  <form method="post" action="{% url 'set_vacation_mode' %}">
+    {% csrf_token %}
+    {{ vacation_mode_form.as_p }}
+    <button type="submit">Set Vacation Mode</button>
+  </form>
+
+  <!-- Custom Notice Board -->
+  <h3>Custom Notice Board</h3>
+  <p>{{ doctor.notice }}</p>
+{% endblock %}

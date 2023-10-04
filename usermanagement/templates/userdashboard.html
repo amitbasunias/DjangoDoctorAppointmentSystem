@@ -1,0 +1,23 @@
+
+{% block content %}
+  <h2>Welcome to the Dashboard, {{ request.user.username }}!</h2>
+
+  <!-- Show user type specific information here -->
+
+  {% if request.user.user_type == 'doctor' %}
+    <h3>Create Moderator</h3>
+    <form method="post" action="{% url 'register_moderator' %}">
+      {% csrf_token %}
+      {{ moderator_form.as_p }}
+      <button type="submit">Create Moderator</button>
+    </form>
+
+    <h3>Moderators under {{ request.user.username }}</h3>
+    <ul>
+      {% for moderator in request.user.moderators.all %}
+        <li>{{ moderator.first_name }} {{ moderator.last_name }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
